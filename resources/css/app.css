@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+@source "../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php";
+
+@theme {
+    --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+    --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+
+    --color-sleeve: #e9ecf2; /* page background, like a record sleeve */
+    --color-paper: #ffffff; /* cards, header, inputs */
+    --color-ink: #1d2233; /* main text */
+    --color-ink-soft: #5a6178; /* secondary text */
+    --color-cobalt: #2f3fd6; /* primary action */
+    --color-cobalt-dark: #2431a8; /* primary action hover */
+    --color-marigold: #f2b632; /* genre tags, record label */
+    --color-brick: #c63d4f; /* errors, delete */
+}
+
+@layer base {
+    body {
+        @apply bg-sleeve font-sans text-ink antialiased;
+    }
+    h1,
+    h2,
+    h3 {
+        @apply font-display;
+    }
+    :focus-visible {
+        outline: 2px solid var(--color-cobalt);
+        outline-offset: 2px;
+    }
+}
+
+@layer components {
+    .btn {
+        @apply inline-flex items-center justify-center gap-2 rounded-md px-4 py-2 text-sm font-semibold transition-colors;
+    }
+    .btn-primary {
+        @apply bg-cobalt text-white hover:bg-cobalt-dark;
+    }
+    .btn-quiet {
+        @apply border border-ink/25 bg-paper text-ink hover:border-ink;
+    }
+    .btn-danger {
+        @apply border border-brick/40 bg-paper text-brick hover:bg-brick hover:text-white;
+    }
+    .input {
+        @apply block w-full rounded-md border border-ink/25 bg-paper px-3 py-2 text-base text-ink placeholder:text-ink-soft/70;
+    }
+    .input[aria-invalid="true"] {
+        border-color: var(--color-brick);
+    }
+}
+
+.disc {
+    border-radius: 9999px;
+    background:
+        radial-gradient(
+            circle,
+            var(--color-ink) 0 3%,
+            var(--color-marigold) 3% 30%,
+            transparent 30%
+        ),
+        repeating-radial-gradient(circle, #1d2233 0 3px, #2a3048 3px 4px);
+}
